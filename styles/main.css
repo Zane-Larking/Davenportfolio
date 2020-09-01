@@ -1,0 +1,270 @@
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    color: #888888;
+}
+/* .content-wrapper {
+    width: 100%;
+    flex-grow: 1;
+} */
+
+.no-js {
+    content: "<em><strong>Attention: Javascript is disabled or your browser does not support it!</strong> <br>\
+    You are missing out on many features of this site through not having it enabled.</em>";
+    padding: 1rem;
+    color: #b92d2d;
+    border: 0.3rem solid #989898;
+    border-left: 1rem solid;
+}
+
+
+header {
+    background-color: white;
+}
+
+header h2 {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+
+header .container, footer .container {
+    width: auto;
+    padding: 0.3rem 3rem;
+}
+
+header .container.grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    justify-items: center;
+}
+
+header i.nav-toggle {
+    font-size: 1.5em;
+    margin-left: 0.3rem;
+}
+ 
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav {
+    border-top: 0.1875rem #888888 solid;
+    background-color: #e5e5e5;
+
+    text-align: center;
+}
+#main-nav a {
+    border-right: rgb(122, 122, 122) solid 1px;
+    flex-grow: 1;
+}
+#main-nav a:last-child {
+    border-right: none;
+}
+[state="closed"] {
+    display: none;
+}
+
+
+article {
+    height: auto;
+    flex-grow: 1;
+}
+
+
+.banner > .container:first-child {
+    font-size: 1.7em;
+    margin-top: 1rem;
+    padding: 0.125rem 1.25rem 1.25rem 1.25rem;
+    background-color: #3e6a3d52;
+}
+
+.banner > .container {
+    width: 80%;
+}
+
+.gallery {
+    width: 100%;
+    background-color: white;
+    padding: 1.25em;
+    height: auto;
+    margin: auto;   
+    max-width: 1200px;
+    width: 90%;
+}
+
+.showcase {
+    position: relative;
+}
+.showcase-header {
+    width: min-content;
+    padding: 0.5em 3em 0.5em 1em;
+    float: left;
+    margin: 1em 0.5em 0 0;
+    background-color: #39982F;
+    font-size: 2em;
+    color: white;
+
+}
+.showcase-body img {
+    height: 10em;
+}
+.showcase-body {
+    background-color: thistle;
+    width: 80%;
+    margin: 3em auto 0 auto;
+    padding: 1em;
+    color: #393939;
+}
+
+
+
+
+
+
+
+footer {
+    width: 100%;
+    height: auto;
+
+}
+
+.btn {
+    border-radius: 0.2em;
+    padding: 0.0625rem 0.125rem;
+    background-color: white;   
+}
+
+a {
+    text-decoration: none;
+    color: #888888;
+}
+
+.info {
+    display: grid;
+    align-items: center;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    
+    flex-basis: 0;
+    row-gap: 0.3rem;
+    gap: 0.3rem;
+}
+.contact .btn {
+    width: max-content;
+    height: min-content;
+}
+.social {
+    padding: 0;
+}
+.social i {
+    font-size: 1.5em;
+    margin: 0 0.0625rem;
+}
+
+.flex-flip-container, .flex-container{
+    display: flex;
+    width: auto;
+}
+.flex-between{
+    justify-content: space-between;
+}
+.max-content{
+    width: max-content;
+}
+.container {
+    padding: 0.3rem 0.6rem;
+    max-width: 1200px;
+    margin: auto;
+}
+.container.unpad {
+    padding-left: 0px; 
+    padding-right: 0px; 
+}
+.full {
+    max-width: unset;
+}
+
+.primary {
+    background-color: #39982F;
+    color: white;
+}
+
+
+.screen-small::before {
+    display: none;
+}
+.screen-big {
+    display: inline;
+}
+
+@media (max-width: 576px) {
+    .screen-big, .screen-big::before {
+        display: none;
+    }
+    .screen-small, .screen-small::before,
+    .screen-tiny, .screen-tiny::before {
+        display: inline;
+    }
+}
+
+@media (max-width: 375px) {
+    .flex-flip-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    footer > .flex-flip-container {
+        flex-direction: column-reverse;
+    }
+    nav.container, footer .container {
+        padding: 0.3rem 0.3rem;
+    }
+}
+@media (max-width: 320px) {
+    nav a.contact {
+        display: none;
+    }
+    #main-nav a:nth-last-child(2) {
+        border-right: none;
+    }
+    .hide-tiny {
+        display: none;
+    }
+    header .container.grid {
+        width: fit-content;
+        column-gap: 0.3rem;
+        padding-left: 0px; 
+        padding-right: 0px; 
+    }
+}
+@media (max-width: 220px) {
+    html {
+        font-size: 0.8em;
+    }
+}
+@media (max-width: 180px) {
+    html {
+        font-size: 0.7em;
+    }
+}
+@media (max-width: 160px) {
+    html {
+        font-size: 0.6em;
+    }
+}
+@media (max-width: 150px) {
+    html {
+        font-size: 0.5em;
+    }
+}
