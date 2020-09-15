@@ -94,12 +94,12 @@ article {
 .gallery {
     width: 100%;
     background-color: white;
-    padding: 1.25em;
     height: auto;
 }
 
 .gallery > a {
     text-decoration: none;
+
 }
 
 .showcase-wrapper {
@@ -108,12 +108,16 @@ article {
     max-width: 1200px;
     width: 90%;
 }
-
+.showcase-wrapper:last-child {
+    padding-bottom: 2em;
+}
 .showcase {
     position: relative;
 }
 .showcase-header {
     width: min-content;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 0.5em 3em 0.5em 1em;
     float: left;
     margin: 1em 0.5em 0 0;
