@@ -56,7 +56,7 @@ header i.nav-toggle {
 
 nav {
     border-top: 0.1875rem #888888 solid;
-    background-color: #e5e5e5;
+    background-color: #f7f4f4;
 
     text-align: center;
 }
@@ -70,7 +70,9 @@ nav {
 [state="closed"] {
     display: none;
 }
-
+.nav-toggle {
+    cursor: pointer;
+}
 
 article {
     height: auto;
@@ -149,10 +151,18 @@ footer {
     background-color: white;   
 }
 
-a {
+
+
+footer a, header a, nav a {
     text-decoration: none;
+}
+footer a, header a, nav a {
     color: #888888;
 }
+.social a {
+    color: white;
+}
+
 
 .info {
     display: grid;
