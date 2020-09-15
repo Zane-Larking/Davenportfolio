@@ -96,7 +96,15 @@ article {
     background-color: white;
     padding: 1.25em;
     height: auto;
-    margin: auto;   
+}
+
+.gallery > a {
+    text-decoration: none;
+}
+
+.showcase-wrapper {
+    margin: auto;
+    padding: 1em 0 0.5em 0;
     max-width: 1200px;
     width: 90%;
 }
