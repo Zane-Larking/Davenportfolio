@@ -95,6 +95,10 @@ article {
     width: 100%;
     background-color: white;
     height: auto;
+}
+
+.gallery > a {
+    text-decoration: none;
 
 }
 
