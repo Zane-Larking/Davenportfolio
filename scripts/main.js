@@ -20,7 +20,7 @@ function toggleDisplayGenerator(id) {
 
 window.addEventListener(
     "load", 
-    ()=>{
+    function () {
         document.getElementById("");
         console.log("test"); 
         document.getElementById("year").innerHTML = new Date().getFullYear();
