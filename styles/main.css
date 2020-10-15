@@ -6,7 +6,8 @@ body {
     padding: 0px;
     margin: 0px;
     width: 100%;
-    color: #888888;
+    /*color: #888888;*/
+    color: #767676;
 }
 /* .content-wrapper {
     width: 100%;
@@ -32,11 +33,6 @@ header h2 {
     margin-block-end: 0.5em;
 }
 
-header .container, footer .container {
-    width: auto;
-    padding: 0.3rem 3rem;
-}
-
 header .container.grid {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -46,16 +42,31 @@ header .container.grid {
 
 header i.nav-toggle {
     font-size: 1.5em;
-    margin-left: 0.3rem;
 }
- 
+#main-nav-toggle {
+    background: none;
+    border: none;
+    padding: 0.2em;
+    appearance: none;
+}
+
+.grid {
+    display: grid;
+}
+
+.justify-end {
+    justify-self: end;
+}
+
 .space-between {
     display: flex;
     justify-content: space-between;
 }
 
 nav {
-    border-top: 0.1875rem #888888 solid;
+    border-top: 0.1875rem #767676 solid;
+    
+    /*#888888;*/
     background-color: #f7f4f4;
 
     text-align: center;
@@ -91,6 +102,41 @@ article {
     width: 80%;
 }
 
+.lg-head {
+    font-size: 2.5em;
+}
+
+.form-background {
+    background-image: url("../images/illustration/weirdo smaller file size.jpg");
+    background-size: 200%;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+}
+.form-background > .wrapper {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #39982FAA;    
+}
+
+.white-backing {
+    background-color: white;
+    /*color: #888888;*/
+    color: #767676;
+    padding: 2em;
+}
+
+.full-width {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form {
+    z-index: 1;
+}
+
 .gallery {
     width: 100%;
     background-color: white;
@@ -121,7 +167,8 @@ article {
     padding: 0.5em 3em 0.5em 1em;
     float: left;
     margin: 1em 0.5em 0 0;
-    background-color: #39982F;
+    /*background-color: #39982F;*/
+    background-color: #308529;
     font-size: 2em;
     color: white;
 
@@ -161,7 +208,8 @@ footer a, header a, nav a {
     text-decoration: none;
 }
 footer a, header a, nav a {
-    color: #888888;
+    /*color: #888888;*/
+    color: #767676;
 }
 .social a {
     color: white;
@@ -206,9 +254,17 @@ footer a, header a, nav a {
     width: max-content;
 }
 .container {
-    padding: 0.3rem 0.6rem;
+    width: auto;
+    padding: 0.3rem 3rem;
     max-width: 1200px;
     margin: auto;
+    box-sizing: border-box;
+}
+.width80 {
+    width: 80%;
+}
+.width100 {
+    width: 100%
 }
 .container.unpad {
     padding-left: 0px; 
@@ -216,10 +272,12 @@ footer a, header a, nav a {
 }
 .full {
     max-width: unset;
+    margin: 0 !important;
 }
 
 .primary {
-    background-color: #39982F;
+    /*background-color: #39982F;*/
+    background-color: #308529;
     color: white;
 }
 
