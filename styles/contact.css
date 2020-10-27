@@ -80,4 +80,27 @@
     #about {
         max-width: none;
     }
+    .form-background {
+        background-size: cover;
+    }
+}
+
+@media (max-width: 330px) {
+    #contact.grid > section {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #contact.grid  {
+        padding: 0 0.3rem;
+    }
+    #placeholder-img {
+        width: auto;
+    }
+    #contact-head {
+        text-align: center;
+    }
+    #contact-form input {
+        box-sizing: border-box;
+        width: 100%;
+    }
 }
