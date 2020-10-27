@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/fc2cc31544.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header include-html="header.html"></header>
+    <header include-html="header.html" loadCB="headerLoadCB"></header>
     <article class="primary form-background">
         <div id="contact-wrapper" class="wrapper">
             <section id="contact" class="grid container grid-pannel">
@@ -55,7 +55,7 @@
             </section>
         </div>
     </article>
-    <footer include-html="footer.html" class="primary"></footer>
+    <footer include-html="footer.html" loadCB="footerLoadCB" class="primary"></footer>
     <script>
         includeHTML();
     </script>

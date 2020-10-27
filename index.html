@@ -19,7 +19,7 @@
     <noscript class="no-js"></noscript>
 
     <!-- <div class="content-wrapper"> -->
-    <header include-html="header.html"></header>
+    <header include-html="header.html" loadCB="headerLoadCB"></header>
     <article>
         <section class="banner container full primary">
             <div class="container">
@@ -57,7 +57,7 @@
         </section>
     </article>
     <!-- </div> -->
-    <footer include-html="footer.html" class="primary"></footer>
+    <footer include-html="footer.html" loadCB="footerLoadCB" class="primary"></footer>
     <script>
         includeHTML();
     </script>
