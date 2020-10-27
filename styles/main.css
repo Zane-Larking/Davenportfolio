@@ -15,8 +15,7 @@ body {
 } */
 
 .no-js {
-    content: "<em><strong>Attention: Javascript is disabled or your browser does not support it!</strong> <br>\
-    You are missing out on many features of this site through not having it enabled.</em>";
+    content: "<em><strong>Attention: Javascript is disabled or your browser does not support it!</strong> <br>You are missing out on many features of this site through not having it enabled.</em>";
     padding: 1rem;
     color: #b92d2d;
     border: 0.3rem solid #989898;
@@ -118,6 +117,7 @@ article {
     flex-grow: 1;
     width: 100%;
     height: 100%;
+    background-color: #39982F;   
     background-color: #39982FAA;    
 }
 
@@ -217,6 +217,7 @@ footer a, header a, nav a {
 
 
 .info {
+    display: flex;
     display: grid;
     align-items: center;
 }
@@ -232,6 +233,7 @@ footer a, header a, nav a {
     gap: 0.3rem;
 }
 .contact .btn {
+    margin-bottom: 0.3em;
     width: max-content;
     height: min-content;
 }
@@ -246,6 +248,7 @@ footer a, header a, nav a {
 .flex-flip-container, .flex-container{
     display: flex;
     width: auto;
+    justify-content: center;
 }
 .flex-between{
     justify-content: space-between;
@@ -271,7 +274,7 @@ footer a, header a, nav a {
     padding-right: 0px; 
 }
 .full {
-    max-width: unset;
+    max-width: none;
     margin: 0 !important;
 }
 
@@ -356,4 +359,10 @@ footer a, header a, nav a {
     html {
         font-size: 0.5em;
     }
+}
+
+.IEBtnHotFix {
+    display: -ms-grid;
+    -ms-grid-columns: max-content;
+    -ms-grid-rows: min-content;
 }
