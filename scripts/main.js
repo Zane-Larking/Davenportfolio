@@ -17,16 +17,11 @@ function toggleDisplayGenerator(id) {
 } 
 
 
-
+//added functionality
 window.addEventListener(
     "load", 
     ()=>{
         console.log("test"); 
-        document.getElementById("year").innerHTML = new Date().getFullYear();
-
-        let navToggle = document.body.querySelector("#main-nav-toggle");
-
-        navToggle.addEventListener("click", toggleDisplayGenerator("main-nav"));
     
     }
 );
