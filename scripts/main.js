@@ -21,7 +21,6 @@ function toggleDisplayGenerator(id) {
 window.addEventListener(
     "load", 
     ()=>{
-        document.getElementById("");
         console.log("test"); 
     
     }
