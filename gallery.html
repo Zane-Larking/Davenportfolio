@@ -22,7 +22,7 @@
             You are missing out on many features of this site through not having it enabled.</em>
         </div>
     </noscript>
-    <header include-html="header.html"></header>
+    <header include-html="header.html" loadCB="headerLoadCB"></header>
     <article>
         <section class="banner container full primary">
             <div class="container">
@@ -67,7 +67,7 @@
             </a>
         </section>
     </article>
-    <footer include-html="footer.html" class="primary"></footer>
+    <footer include-html="footer.html" loadCB="footerLoadCB" class="primary"></footer>
     <script>
         includeHTML();
     </script>
