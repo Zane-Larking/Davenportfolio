@@ -11,6 +11,15 @@ function includeHTML() {
         }
     }
 }
+var footerLoadCB = function() {
+    let ccyear = document.getElementById("year");
+    ccyear.innerHTML = new Date().getFullYear();
+}
+
+var headerLoadCB = function() {
+    let navToggle = document.body.querySelector("#main-nav-toggle");
+    navToggle.addEventListener("click", toggleDisplayGenerator("main-nav"));
+}
 
 function writeFromFile(elmnt,file) {
     /* Make an HTTP request using the attribute value as the file name: */
@@ -20,8 +29,14 @@ function writeFromFile(elmnt,file) {
             if (this.status == 200) {elmnt.innerHTML = this.responseText;}
             if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
             elmnt.removeAttribute("include-html");
+            let loadCB = elmnt.getAttribute("loadCB");
+            if (loadCB && window[loadCB]) {
+                window[loadCB]();
+                elmnt.removeAttribute("loadCB");
+            }
         }
     }
     xhttp.open("GET", file, true);
     xhttp.send();
 }
+
