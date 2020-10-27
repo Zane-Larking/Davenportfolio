@@ -290,6 +290,12 @@ footer a, header a, nav a {
 }
 
 @media (max-width: 576px) {
+    .grid-pannel {
+        grid-template-columns: auto !important;
+    }
+    #contact-head {
+        grid-column: span 1;
+    }
     .screen-big, .screen-big::before {
         display: none;
     }
