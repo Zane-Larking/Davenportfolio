@@ -41,11 +41,11 @@
 }
 #contact-form label {
     font-size: 1.17em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    margin: 1em 0 1em 0;
     font-weight: bold;
+}
+#contact-form > * {
+    display: block;
 }
 
 #send-contact-form {
@@ -85,7 +85,11 @@
     }
 }
 
-@media (max-width: 330px) {
+@media (max-width: 337px) {
+    .contact {
+        flex-direction: row;
+        width: auto;
+    }
     #contact.grid > section {
         width: 100%;
         box-sizing: border-box;
