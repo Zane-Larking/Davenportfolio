@@ -1,17 +1,20 @@
 /* Directories */
 //create sections
-const addSections = function(parent, header) {
+const addSections = function(parent, directory) {
     let sectEl = document.createElement('section');
     sectEl.classList.add("gallery-section");
 
     let h = document.createElement("h1");
+    header = directory.substring(0, directory.length - 1);;
     h.innerText = header;
 
     let div = document.createElement("div");
     div.classList.add("gallery-inner");
 
     sectEl.append(h);
+    sectEl.append(div);
     parent.append(sectEl);
+    return div
 }
 
 
@@ -47,6 +50,7 @@ const addImg = function(parent, src) {
     let div = document.createElement("div");
     div.classList.add("image-wrapper");
 
+    
     let imgEl = document.createElement('img');
     
     let fileName = decodeURI(src.split('\\').pop().split('/').pop()).replace("_", " ");
@@ -107,16 +111,25 @@ const loadImage = function(url) {
 
 //loads a gallery
 const loadGallery = function(parentSelector, gallery) {
-    let parentEl = document.querySelector(parentSelector);
-    getDirectories("images/"+encodeURIComponent(gallery)+"/").then((directories) =>{
+    var galleryPath = "images/"+encodeURIComponent(gallery)+"/";
+    var parentEl = document.querySelector(parentSelector);
+    getDirectories(galleryPath)
+         
+    .then((directories) =>{
         console.log(directories);
         directories.forEach((directory) => {
-            getimages(directory).then((paths) => {
-                console.log(paths);
-                paths.forEach((path) => {
-                    loadImage(path).then((img) => {
+            var directoryPath = galleryPath + directory;
+            
+            console.log(directoryPath);
+            sectionEl = addSections(parentEl, directory);
+            getimages(directoryPath).then((files) => {
+                console.log(files);
+                files.forEach((file) => {
+                    var filePath = directoryPath + file;
+                    console.log(filePath);
+                    loadImage(filePath).then((img) => {
                         console.log(img);
-                        addImg(parentEl, img.src);
+                        addImg(sectionEl, filePath);
                     })
                 });
             });

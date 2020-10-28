@@ -46,7 +46,7 @@
                 <p>This site is a collection of art I've created while developing my skills</p>
             </div>
         </section>
-        <section class="gallery">
+        <div class="gallery-wrapper">
             <div class="controls">
                 <select name="" id="">
                     <option value="January">January</option>
@@ -55,14 +55,14 @@
                     <option value="April">April</option>
                 </select>
             </div>
-            <article>
+            <article class="gallery">
                 <Section>
     
     
                 </Section>
             </article>
 
-        </section>
+        </div>
     </article>
     <footer include-html="footer.html" loadCB="footerLoadCB" class="primary">
         <div class="container flex-flip-container flex-between">
@@ -87,7 +87,7 @@
     </footer>
     <script>
         includeHTML();
-        loadGallery(".gallery", "graphic_design");
+        loadGallery("article.gallery", "illustration");
     </script>
 </body>
 </html>

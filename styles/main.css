@@ -143,6 +143,17 @@ form {
     height: auto;
 }
 
+.gallery-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery-inner img{
+    height: 200px;
+    max-width: 100%;
+}
+
 .gallery > a {
     text-decoration: none;
 

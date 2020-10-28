@@ -13,7 +13,7 @@ if (is_dir($path)) {
             $dirPath = $path . $dir;
             // echo $filePath . "<br>";
             if (is_dir($dirPath) && $dir != "." && $dir != ".." ) {
-                $out[] = $_REQUEST['path'] . $dir . "/";
+                $out[] = $dir . "/";
             }
         }
         closedir($dh);

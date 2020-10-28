@@ -1,5 +1,5 @@
 <?php 
-$path = "../" .$_REQUEST['path'];
+$path = "../" . $_REQUEST['path'];
 $out = array();
 
 //debugginh
@@ -14,7 +14,7 @@ if (is_dir($path)) {
             // echo $filePath . "<br>";
             if (filetype($filePath) == "file") {
                 $p = pathinfo($file);
-                $out[] = $_REQUEST['path'] . $p['filename'] . "." . pathinfo($filePath, PATHINFO_EXTENSION);
+                $out[] = $p['filename'] . "." . pathinfo($filePath, PATHINFO_EXTENSION);
             }
         }
         closedir($dh);
