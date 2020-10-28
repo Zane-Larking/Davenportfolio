@@ -10,6 +10,7 @@
     <link rel="icon" href="favicon/favicon64x64.ico" sizes="64x64" type="image/x-icon">
 
     <script src="scripts/includeHTML.js"></script>
+    <script src="scripts/includeImages.js"></script>
     <script src="scripts/main.js"></script>
     
     <link rel="stylesheet" href="styles/main.css">
@@ -48,39 +49,19 @@
         <section class="gallery">
             <div class="controls">
                 <select name="" id="">
-                    <option value="January"></option>
-                    <option value="Febuary"></option>
-                    <option value="March"></option>
-                    <option value="April"></option>
+                    <option value="January">January</option>
+                    <option value="Febuary">Febuary</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
                 </select>
             </div>
-            <div class="showcase-wrapper">
-                <a href="gallery.html">
-                <!-- <a href="gallery-pencil.html"> -->
-                    <div class="showcase-header">Pencil</div>
-                </a>
-                <div class="showcase-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac vehicula tortor. Etiam augue lorem, tempus aliquam leo egestas, vehicula imperdiet arcu. Mauris rutrum arcu nulla, et consequat erat laoreet nec. Duis faucibus metus id nisi malesuada, sit amet dapibus dui imperdiet. Cras lacinia neque metus, quis bibendum tortor luctus nec. Praesent lacinia sem aliquam urna laoreet, eu mollis sem consectetur. Mauris tempus vel nulla ac porta. Etiam quis nulla vel sem tristique pellentesque. Mauris eleifend, magna sed tincidunt dignissim, urna lectus maximus lorem, et faucibus mi lorem ut ipsum. Aliquam vel eleifend lacus, sed pulvinar massa. Cras vel nunc elit. Sed mollis vel leo eu laoreet.
-                </div>
-            </div>
-            <div class="showcase-wrapper">
-                <a href="gallery.html">
-                <!--<a href="gallery-paint.html">-->
-                    <div class="showcase-header">Paint</div>
-                </a>
-                <div class="showcase-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac vehicula tortor. Etiam augue lorem, tempus aliquam leo egestas, vehicula imperdiet arcu. Mauris rutrum arcu nulla, et consequat erat laoreet nec. Duis faucibus metus id nisi malesuada, sit amet dapibus dui imperdiet. Cras lacinia neque metus, quis bibendum tortor luctus nec. Praesent lacinia sem aliquam urna laoreet, eu mollis sem consectetur. Mauris tempus vel nulla ac porta. Etiam quis nulla vel sem tristique pellentesque. Mauris eleifend, magna sed tincidunt dignissim, urna lectus maximus lorem, et faucibus mi lorem ut ipsum. Aliquam vel eleifend lacus, sed pulvinar massa. Cras vel nunc elit. Sed mollis vel leo eu laoreet.
-                </div>
-            </div>
-            <div class="showcase-wrapper">
-                <a href="gallery.html">
-                <!-- <a href="gallery-computer.html"> -->
-                    <div class="showcase-header">Computer</div>
-                </a>
-                <div class="showcase-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac vehicula tortor. Etiam augue lorem, tempus aliquam leo egestas, vehicula imperdiet arcu. Mauris rutrum arcu nulla, et consequat erat laoreet nec. Duis faucibus metus id nisi malesuada, sit amet dapibus dui imperdiet. Cras lacinia neque metus, quis bibendum tortor luctus nec. Praesent lacinia sem aliquam urna laoreet, eu mollis sem consectetur. Mauris tempus vel nulla ac porta. Etiam quis nulla vel sem tristique pellentesque. Mauris eleifend, magna sed tincidunt dignissim, urna lectus maximus lorem, et faucibus mi lorem ut ipsum. Aliquam vel eleifend lacus, sed pulvinar massa. Cras vel nunc elit. Sed mollis vel leo eu laoreet.
-                </div>
-            </div>
+            <article>
+                <Section>
+    
+    
+                </Section>
+            </article>
+
         </section>
     </article>
     <footer include-html="footer.html" loadCB="footerLoadCB" class="primary">
@@ -106,6 +87,7 @@
     </footer>
     <script>
         includeHTML();
+        loadGallery(".gallery", "graphic_design");
     </script>
 </body>
 </html>
