@@ -143,10 +143,67 @@ form {
     height: auto;
 }
 
+.gallery-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery-inner img{
+    height: auto;
+    max-width: 100%;
+    max-height: 200px;
+}
+
 .gallery > a {
     text-decoration: none;
 
 }
+
+.gallery .image-wrapper {
+    display: grid;
+    justify-items: center;
+    margin: 0.4em;
+    padding: 0.4em;
+    box-sizing: border-box;
+    grid-template-rows: 200px auto;
+    align-items: center;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.gallery .image-wrapper:hover {
+    outline: auto 0.2em #43953cb3;
+    background-color: #fbfbfb;
+}
+
+.gallery .image-wrapper:active {
+    outline: auto 0.2em #224e1eb3;
+    background-color: #fbfbfb;
+    border-radius: 5px;
+}
+
+.gallery .image-wrapper p {
+    margin: 0.2em 1em 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+section.gallery-section h2 {
+    font-size: 1.5em;
+}
+
+select#gallery-selector {
+    background-color: #767676;
+    color: white;
+    border-color: #357c30;
+    border-radius: 0.2em;
+    padding: 0.2em;
+}
+
 
 .showcase-wrapper {
     margin: auto;

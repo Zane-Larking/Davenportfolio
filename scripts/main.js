@@ -16,13 +16,26 @@ function toggleDisplayGenerator(id) {
     }
 } 
 
+var chop = function(str, chars=1) {
+    console.log("chopped " + chars + " charactors!");
+    return str.substring(0, str.length - chars);;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+function showModal() {
+    el = event.target;
+    console.log("modal test");
+}
 
 //added functionality
 window.addEventListener(
     "load", 
     ()=>{
         console.log("test"); 
-    
     }
 );
 
