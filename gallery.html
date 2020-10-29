@@ -9,12 +9,20 @@
     <!-- <link rel="icon" href="favicon/" sizes="64x64 16x16" type="image/x-icon"> -->
     <link rel="icon" href="favicon/favicon64x64.ico" sizes="64x64" type="image/x-icon">
 
+    <script src="scripts/main.js"></script>
     <script src="scripts/includeHTML.js"></script>
     <script src="scripts/includeImages.js"></script>
-    <script src="scripts/main.js"></script>
     
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://kit.fontawesome.com/fc2cc31544.js" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener(
+            "load", 
+            ()=>{
+                galleryCB();           
+            }
+        );
+    </script>
 </head>
 <body>
     <noscript>
@@ -30,9 +38,9 @@
         <nav id="main-nav" class="container full">
             <div class="container unpad space-between">
                 <a href="index.html"><i class="fas fa-home screen-small"></i><span class="screen-big">Home</span></a>
-                <a href="gallery.html">Pencil</a>
-                <a href="gallery.html">Paint</a>
-                <a href="gallery.html">Computer</a>
+                <a href="gallery.html?gallery=pencil">Pencil</a>
+                <a href="gallery.html?gallery=paint">Paint</a>
+                <a href="gallery.html?gallery=computer">Computer</a>
                 <a href="contact.html" class="hide-tiny">Contact Me</a>
             </div>
         </nav>
@@ -46,13 +54,9 @@
                 <p>This site is a collection of art I've created while developing my skills</p>
             </div>
         </section>
-        <div class="gallery-wrapper">
-            <div class="controls">
-                <select name="" id="">
-                    <option value="January">January</option>
-                    <option value="Febuary">Febuary</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
+        <div class="gallery-wrapper container">
+            <div id="controls">
+                <select id="gallery-selector" name="gallery selector" onchange="handleGalleryChange()">
                 </select>
             </div>
             <article class="gallery">
@@ -87,7 +91,6 @@
     </footer>
     <script>
         includeHTML();
-        loadGallery("article.gallery", "illustration");
     </script>
 </body>
 </html>
