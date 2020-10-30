@@ -1,14 +1,119 @@
 const imageFolder = "images/";
 
-// const Gallery = function(name, selector, path) {
-//     this.name = name;
-//     this.el = document.querySelector(selector);
-//     this.path = path;
-// }
+function* directoryGenerator(directories) { 
+    for (directory of directories) {
+        yield directory;
+    }
+}
+
+var directoryIterator;
+
+
+const Gallery = function(name, selector, path) {
+    this.name = name;
+    this.selector = selector;
+    this.el = document.querySelector(selector);
+    this.path = path;
+    this.dirIter;
+    this.nextDir;
+    this.sections = [];
+
+
+    /*methods*/
+    this.load = () => {
+
+        //gallery info
+    
+        /*controls*/
+        //populate the gallery selector
+        getDirectories(imageFolder)
+        .then((directories) => {
+            populateSelectEl("#controls #gallery-selector", directories, this.name, chop)
+        });
+             
+        //populate the section selector
+        getDirectories(this.path) //returns an array of sub folders at this path
+        .then((sections) => {
+            populateSelectEl("#controls #section-selector", sections, this.name, chop)
+        });
+    
+        //loads gallery
+        getDirectories(this.path)
+        .then((directories) =>{
+            //tracks what sections were loaded
+            this.dirIter = directoryGenerator(directories);
+            this.nextDir = this.dirIter.next();
+            this.loadNextSection();
+        });
+    } 
+
+
+
+    /* Directories */
+    //create sections
+    this.addSection = (directory) => {
+        let sectEl = document.createElement('section');
+        sectEl.classList.add("gallery-section");
+
+        let hr = document.createElement('hr');
+
+        let h = document.createElement("h2");
+        let header = capitalizeFirstLetter(chop(directory))
+        h.innerText = header;
+
+        let div = document.createElement("div");
+        div.classList.add("gallery-inner");
+
+        sectEl.append(hr);
+        sectEl.append(h);
+        sectEl.append(div);
+        this.el.append(sectEl);
+        return div
+    }
+
+
+
+    this.loadNextSection = () => {
+        let directory = this.nextDir.value;
+        let directoryPath = this.path + directory;
+        if (directory) {
+            this.loadSection(directoryPath, directory);
+        }
+        this.nextDir = this.dirIter.next();
+    
+        //disable subsequent clicks
+        console.log(this.nextDir);
+        if (this.nextDir.done == true) {
+            document.querySelector("#load-next-section").setAttribute("disabled","");
+        }
+    }
+    
+    
+
+    this.loadSection = (directoryPath, directory) => {    
+        console.log(directoryPath);
+        sectionEl = this.addSection(directory);
+        getimages(directoryPath).then((files) => {
+            console.log(files);
+            files.forEach((file) => {
+                var filePath = directoryPath + file;
+                console.log(filePath);
+                loadImage(filePath).then((img) => {
+                    console.log(img);
+                    addImg(sectionEl, filePath);
+                })
+            });
+        });
+    }
+    
+}
+
+
+
 
 /* Directories */
 //create sections
-const addSections = function(parent, directory) {
+const addSection = function(parent, directory) {
     let sectEl = document.createElement('section');
     sectEl.classList.add("gallery-section");
 
@@ -124,88 +229,23 @@ const loadImage = function(url) {
     })
 }
 
-
-var loadSection = function(galleryEl, directoryPath, directory) {    
-    console.log(directoryPath);
-    sectionEl = addSections(galleryEl, directory);
-    getimages(directoryPath).then((files) => {
-        console.log(files);
-        files.forEach((file) => {
-            var filePath = directoryPath + file;
-            console.log(filePath);
-            loadImage(filePath).then((img) => {
-                console.log(img);
-                addImg(sectionEl, filePath);
-            })
-        });
-    });
-}
-
-
-function* directoryGenerator(directories) { 
-    for (directory of directories) {
-        yield directory;
-    }
-}
-
-var directoryIterator;
-
-var loadNextSection = function(galleryEl, galleryPath) {
-    let next = directoryIterator.next()
-    let directory = next.value;
-    let directoryPath = galleryPath + directory;
-    if (directory) {
-        loadSection(galleryEl, directoryPath, directory);
-    }
-
-    //disable subsequent clicks
-    console.log(next);
-    if (next.done == true) {
-        document.querySelector("#load-next-section").setAttribute("disabled","");
-    }
-}
-
-var populateSelector = function(selector, options, value, processor) {
+/*controls*/
+var populateSelectEl = function(selector, options, value, processor) {
     var selectEl = document.querySelector(selector);
-    options.forEach((option) => {
+        options.forEach((option) => {
         var optionEl = document.createElement("option");
         optionName = processor(option);
         optionEl.value = optionName;
         optionEl.innerText = capitalizeFirstLetter(optionName);
         selectEl.append(optionEl);
+    });
+    if (value == false) {
+        selectEl.value = "select 1";
+    }
+    else {
         selectEl.value = value;
-    });
+    }
 }
-
-
-//loads a gallery
-var loadGallery = function(parentSelector, gallery) {
-
-    //gallery info
-    var galleryPath = imageFolder+encodeURIComponent(gallery)+"/";
-    var galleryEl = document.querySelector(parentSelector);
-
-    /*controls*/
-    //populate the gallery selector
-    getDirectories(imageFolder)
-    .then((directories) => {
-        populateSelector("#controls #gallery-selector", directories, gallery, chop)
-    });
-         
-    //populate the section selector
-    getDirectories(galleryPath) //returns an array of sub folders at this path
-    .then((sections) => {
-        populateSelector("#controls #section-selector", sections, gallery, chop)
-    });
-
-    //loads gallery
-    getDirectories(galleryPath)
-    .then((directories) =>{
-        //tracks what sections were loaded
-        directoryIterator = directoryGenerator(directories);
-        loadNextSection(galleryEl, galleryPath);
-    });
-} 
 
 
 //Changes the gallery
@@ -218,29 +258,26 @@ var handleGalleryChange = function() {
 //Changes the gallery section
 var handleSectionChange = function() {
     console.log(event)
-    let searchParams = new URLSearchParams(window.location.search);
-    let gallery = searchParams.get("gallery");
     let sectionDir = event.target.value+"/";
-    let galleryPath = imageFolder+encodeURIComponent(gallery)+"/"+sectionDir;
-    var galleryEl = document.querySelector("article.gallery");
-    loadSection(galleryEl, galleryPath, sectionDir);
+    let sectionPath = imageFolder+encodeURIComponent(mainGallery.name)+"/"+sectionDir;
+    mainGallery.loadSection(sectionPath, sectionDir); //Needs to be updated to work for multiple galleries
     
 } 
 
 var handleLoadNextSection = function() {
     console.log(event)
-    let searchParams = new URLSearchParams(window.location.search);
-    let gallery = searchParams.get("gallery");
-    let galleryPath = imageFolder+encodeURIComponent(gallery)+"/";
-    var galleryEl = document.querySelector("article.gallery");
-    loadNextSection(galleryEl, galleryPath)
+    mainGallery.loadNextSection(); //Needs to be updated to work for multiple galleries
 }
 
 //runs the loadGallery script in the page load callback
 const galleryCB = function() {
     console.log("Gallery script ran")
     let searchParams = new URLSearchParams(window.location.search);
-    let gallery = searchParams.get("gallery");
-    loadGallery("article.gallery", gallery);
-    // mainGallery = Gallery()
+    let galleryName = searchParams.get("gallery");
+
+    var galleryPath = imageFolder+encodeURIComponent(galleryName)+"/";
+    mainGallery = new Gallery(galleryName, "article.gallery", galleryPath)
+
+    mainGallery.load()
+
 }
