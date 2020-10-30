@@ -1,3 +1,11 @@
+const imageFolder = "images/";
+
+// const Gallery = function(name, selector, path) {
+//     this.name = name;
+//     this.el = document.querySelector(selector);
+//     this.path = path;
+// }
+
 /* Directories */
 //create sections
 const addSections = function(parent, directory) {
@@ -53,15 +61,14 @@ const addImg = function(parent, src) {
     let btn = document.createElement("button");
     btn.classList.add("image-wrapper");
 
-
-    let imgEl = document.createElement('img');
-    imgEl.src = src;
-    
     let fileName = decodeURI(src.split('\\').pop().split('/').pop()).replace("_", " ");
     console.log(fileName);
     let p = document.createElement("p");
     p.innerText = fileName;
 
+    let imgEl = document.createElement('img');
+    imgEl.alt = fileName;
+    imgEl.src = src;
 
     btn.append(imgEl);
     btn.append(p);
@@ -118,67 +125,122 @@ const loadImage = function(url) {
 }
 
 
-var loadSection = function() {
-
+var loadSection = function(galleryEl, directoryPath, directory) {    
+    console.log(directoryPath);
+    sectionEl = addSections(galleryEl, directory);
+    getimages(directoryPath).then((files) => {
+        console.log(files);
+        files.forEach((file) => {
+            var filePath = directoryPath + file;
+            console.log(filePath);
+            loadImage(filePath).then((img) => {
+                console.log(img);
+                addImg(sectionEl, filePath);
+            })
+        });
+    });
 }
+
+
+function* directoryGenerator(directories) { 
+    for (directory of directories) {
+        yield directory;
+    }
+}
+
+var directoryIterator;
+
+var loadNextSection = function(galleryEl, galleryPath) {
+    let next = directoryIterator.next()
+    let directory = next.value;
+    let directoryPath = galleryPath + directory;
+    if (directory) {
+        loadSection(galleryEl, directoryPath, directory);
+    }
+
+    //disable subsequent clicks
+    console.log(next);
+    if (next.done == true) {
+        document.querySelector("#load-next-section").setAttribute("disabled","");
+    }
+}
+
+var populateSelector = function(selector, options, value, processor) {
+    var selectEl = document.querySelector(selector);
+    options.forEach((option) => {
+        var optionEl = document.createElement("option");
+        optionName = processor(option);
+        optionEl.value = optionName;
+        optionEl.innerText = capitalizeFirstLetter(optionName);
+        selectEl.append(optionEl);
+        selectEl.value = value;
+    });
+}
+
 
 //loads a gallery
 var loadGallery = function(parentSelector, gallery) {
-    //control
-    var selectEl = document.querySelector("#controls select");
 
-    getDirectories("images/")
+    //gallery info
+    var galleryPath = imageFolder+encodeURIComponent(gallery)+"/";
+    var galleryEl = document.querySelector(parentSelector);
+
+    /*controls*/
+    //populate the gallery selector
+    getDirectories(imageFolder)
     .then((directories) => {
-        directories.forEach((directory) => {
-            var option = document.createElement("option");
-            directoryName = chop(directory);
-            option.value = directoryName;
-            option.innerText = capitalizeFirstLetter(directoryName);
-            selectEl.append(option);
-            selectEl.value = gallery;
-        });
+        populateSelector("#controls #gallery-selector", directories, gallery, chop)
+    });
+         
+    //populate the section selector
+    getDirectories(galleryPath) //returns an array of sub folders at this path
+    .then((sections) => {
+        populateSelector("#controls #section-selector", sections, gallery, chop)
     });
 
-
-    //gallery sections
-    var galleryPath = "images/"+encodeURIComponent(gallery)+"/";
-    var galleryEl = document.querySelector(parentSelector);
+    //loads gallery
     getDirectories(galleryPath)
-         
     .then((directories) =>{
-        console.log(directories);
-        directories.forEach((directory) => {
-            var directoryPath = galleryPath + directory;
-            
-            console.log(directoryPath);
-            sectionEl = addSections(galleryEl, directory);
-            getimages(directoryPath).then((files) => {
-                console.log(files);
-                files.forEach((file) => {
-                    var filePath = directoryPath + file;
-                    console.log(filePath);
-                    loadImage(filePath).then((img) => {
-                        console.log(img);
-                        addImg(sectionEl, filePath);
-                    })
-                });
-            });
-        });
+        //tracks what sections were loaded
+        directoryIterator = directoryGenerator(directories);
+        loadNextSection(galleryEl, galleryPath);
     });
 } 
-    
+
+
 //Changes the gallery
 var handleGalleryChange = function() {
     console.log(event)
     gallery = event.target.value;
     document.location.search = "?gallery="+gallery;
-    // loadGallery("article.gallery", gallery);
 } 
 
+//Changes the gallery section
+var handleSectionChange = function() {
+    console.log(event)
+    let searchParams = new URLSearchParams(window.location.search);
+    let gallery = searchParams.get("gallery");
+    let sectionDir = event.target.value+"/";
+    let galleryPath = imageFolder+encodeURIComponent(gallery)+"/"+sectionDir;
+    var galleryEl = document.querySelector("article.gallery");
+    loadSection(galleryEl, galleryPath, sectionDir);
+    
+} 
 
+var handleLoadNextSection = function() {
+    console.log(event)
+    let searchParams = new URLSearchParams(window.location.search);
+    let gallery = searchParams.get("gallery");
+    let galleryPath = imageFolder+encodeURIComponent(gallery)+"/";
+    var galleryEl = document.querySelector("article.gallery");
+    loadNextSection(galleryEl, galleryPath)
+}
+
+//runs the loadGallery script in the page load callback
 const galleryCB = function() {
     console.log("Gallery script ran")
     let searchParams = new URLSearchParams(window.location.search);
     let gallery = searchParams.get("gallery");
     loadGallery("article.gallery", gallery);
+    // mainGallery = Gallery()
 }

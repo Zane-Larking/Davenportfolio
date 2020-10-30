@@ -56,17 +56,28 @@
         </section>
         <div class="gallery-wrapper container">
             <div id="controls">
-                <select id="gallery-selector" name="gallery selector" onchange="handleGalleryChange()">
+                <select id="gallery-selector" class="gallery-control" name="gallery selector" onchange="handleGalleryChange()">
+                </select>
+                <select id="section-selector" class="gallery-control" name="section selector" onchange="handleSectionChange()">
                 </select>
             </div>
             <article class="gallery">
+                <noscript>
+                    <div class="no-js">
+                        <em><strong>Attention: Javascript is disabled or your browser does not support it!</strong> <br>
+                        You are missing out on many features of this site through not having it enabled.</em>
+                    </div>
+                </noscript>
                 <Section>
     
     
                 </Section>
             </article>
-
         </div>
+        <button id="load-next-section" onclick="handleLoadNextSection()">
+            <i class="fas fa-angle-down"></i>
+        </button>
+
     </article>
     <footer include-html="footer.html" loadCB="footerLoadCB" class="primary">
         <div class="container flex-flip-container flex-between">
