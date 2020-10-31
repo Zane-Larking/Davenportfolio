@@ -87,6 +87,8 @@ nav {
 article {
     height: auto;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -106,7 +108,7 @@ article {
 }
 
 .form-background {
-    background-image: url("../images/illustration/weirdo smaller file size.jpg");
+    background-image: url("../images/pencil/Past\ Work/weirdo smaller file size.jpg");
     background-size: 200%;
     background-position: center;
     display: flex;
@@ -135,6 +137,13 @@ article {
 
 form {
     z-index: 1;
+}
+
+.gallery-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
 }
 
 .gallery {
@@ -191,19 +200,48 @@ form {
     text-overflow: ellipsis;
     width: 100%;
 }
+section.gallery-placeholder {
+    margin: 2em 0;
+    height: auto;
+    background-color: #cccccc;
+    text-align: center;
+}
+section.gallery-section {
+    padding-top: 2em;
+}
 
 section.gallery-section h2 {
     font-size: 1.5em;
 }
 
-select#gallery-selector {
+select.gallery-control {
     background-color: #767676;
     color: white;
-    border-color: #357c30;
     border-radius: 0.2em;
     padding: 0.2em;
+    cursor: pointer;
 }
 
+select.gallery-control:hover {
+    background-color: #585858;
+}
+
+select.gallery-control option {
+    background-color: #767676;    
+}
+
+#load-next-section {
+    background-image: linear-gradient(to bottom, rgb(255 255 255 / 0%), rgb(157 157 157 / 100%));
+    border: none;
+    font-size: 2em;
+    color: #545454;
+    opacity: 1;
+    width: 100%;
+}
+
+#load-next-section[disabled] {
+    opacity: 0.3;
+}
 
 .showcase-wrapper {
     margin: auto;
@@ -314,7 +352,7 @@ footer a, header a, nav a {
     width: max-content;
 }
 .container {
-    width: auto;
+    width: 100%;
     padding: 0.3rem 3rem;
     max-width: 1200px;
     margin: auto;
