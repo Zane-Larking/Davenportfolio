@@ -200,6 +200,15 @@ form {
     text-overflow: ellipsis;
     width: 100%;
 }
+section.gallery-placeholder {
+    margin: 2em 0;
+    height: auto;
+    background-color: #cccccc;
+    text-align: center;
+}
+section.gallery-section {
+    padding-top: 2em;
+}
 
 section.gallery-section h2 {
     font-size: 1.5em;

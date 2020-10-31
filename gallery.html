@@ -58,7 +58,8 @@
             <div id="controls">
                 <select id="gallery-selector" class="gallery-control" name="gallery selector" onchange="handleGalleryChange()">
                 </select>
-                <select id="section-selector" class="gallery-control" name="section selector" onchange="handleSectionChange()">
+                <select id="section-selector" class="gallery-control" name="section selector" value="Jump To Section" onchange="handleSectionChange()">
+                    <option hidden value="Jump To Section">Jump To Section</option>
                 </select>
             </div>
             <article class="gallery">
@@ -74,7 +75,7 @@
                 </Section>
             </article>
         </div>
-        <button id="load-next-section" onclick="mainGallery.loadNextSection()()">
+        <button id="load-next-section" onclick="mainGallery.loadNextSection()">
             <i class="fas fa-angle-down"></i>
         </button>
 
