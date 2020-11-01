@@ -56,11 +56,9 @@
         </section>
         <div class="gallery-wrapper container">
             <div id="controls">
-                <label for="gallery-selector">Select Gallery</label>
-                <select id="gallery-selector" class="gallery-control" name="gallery selector" onchange="handleGalleryChange()">
+                <select aria-label="Load Next Section" id="gallery-selector" class="gallery-control" name="gallery selector" aria-label="Select Gallery" onchange="handleGalleryChange()">
                 </select>
-                <label for="section-selector">Select Gallery Section</label>
-                <select id="section-selector" class="gallery-control" name="section selector" value="Jump To Section" onchange="handleSectionChange()">
+                <select id="section-selector" class="gallery-control" name="section selector" value="Jump To Section" aria-label="Select Gallery Section" onchange="handleSectionChange()">
                     <option hidden value="Jump To Section">Jump To Section</option>
                 </select>
             </div>
